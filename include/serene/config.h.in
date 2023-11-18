@@ -1,0 +1,55 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#if __cplusplus < 202002L
+#  error "C++20 or better is required"
+#endif
+
+
+// the configured options and settings
+
+#define SERENE_VERSION "@PROJECT_VERSION@"
+
+// Why so obvious? to make the linter shutup :))
+#define I8_SIZE  8
+#define I32_SIZE 32
+#define I64_SIZE 64
+
+#define MAX_PATH_SLOTS 256
+
+#define COMMON_ARGS_COUNT 6
+
+#define PACKED_FUNCTION_NAME_PREFIX "__serene_"
+
+// Should we build the support for MLIR CL OPTIONS?
+#cmakedefine SERENE_WITH_MLIR_CL_OPTION
+
+#ifdef __cplusplus
+enum class TypeID {
+#else
+typedef enum {
+#endif
+  NIL = 0,
+  SYMBOL,
+  TYPE,
+  FN,
+  NS,
+  NUMBER,
+  INT,
+  CSTRING,
+  STRING,
+  KEYWORD,
+  NAMESPACE,
+  LIST,
+  MAP,
+  VECTOR,
+  STRUCT,
+  PROTOCOL,
+  Error,
+}
+#ifndef __cplusplus
+TypeID
+#endif
+;
+
+#endif
